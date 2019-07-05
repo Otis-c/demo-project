@@ -1,0 +1,242 @@
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+      <h2>Submit Quote</h2>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a [routerLink]="['/home']">Home</a>
+        </li>
+        <li class="breadcrumb-item">
+          <a [routerLink]="['/requisitions']">Requisitions</a>
+        </li>
+        <li class="breadcrumb-item active">
+          <strong>Submit Quote</strong>
+        </li>
+      </ol>
+    </div>
+    <div class="col-lg-2"></div>
+  </div>
+  <div class="wrapper wrapper-content animated fadeInRight">
+    <div>
+      <!-- Requisition Detail -->
+      <div class="ibox ">
+        <div class="ibox-title">
+          <h5>Requisition REF: {{req.referenceNo}}</h5>
+        </div>
+        <div class="ibox-content">
+          <div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-lg-2 col-form-label">Summary</label>
+                  <div class="col-lg-10">
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="summary"
+                      value="{{ req.summary }}"/>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-lg-2 col-form-label">Description</label>
+                  <div class="col-lg-10">
+                      <input
+                      type="text"
+                      class="form-control"
+                      name="description"
+                      value="{{ req.description }}"/>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group row">
+                <label class="col-lg-2 col-form-label">Ref No.</label>
+                <div class="col-lg-10">
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="summary"
+                    value="{{ req.referenceNo }}"/>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group row">
+                <label class="col-lg-2 col-form-label"> Due Date</label>
+                <div class="col-lg-10">
+                    <input
+                    type="text"
+                    class="form-control"
+                    name="description"
+                    value="{{ req.submissionDueDate }}"/>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-lg-2 col-form-label">Status</label>
+                  <div class="col-lg-10">
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="summary"
+                      value="{{ req.status }}"/>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-lg-2 col-form-label"> Date created</label>
+                  <div class="col-lg-10">
+                      <input
+                      type="text"
+                      class="form-control"
+                      name="description"
+                      value="{{ req.dateCreated }}"/>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row" >
+                <div class="col-md-4"></div>
+              <div class="col-md-4" *appHasRole="['Authoriser']">
+                <button type="button" (click)="authoriseRequisition(req.id)" class="btn btn-block btn-outline btn-primary">Authorise</button>
+              </div>
+              <div class="col-md-4"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End Requisition Detail -->
+
+      <!-- Submit Quotation  -->
+      <div *appHasRole="['Vendor']">
+          <div class="ibox ">
+            <div class="ibox-title">
+              <h5>Submit Quotation</h5>
+            </div>
+            <div class="ibox-content">
+              <form role="form" #reqForm="ngForm">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group row">
+                      <label class="col-lg-2 col-form-label">Summary</label>
+                      <div class="col-lg-10">
+                        <input
+                          type="text"
+                          class="form-control"
+                          name="summary"
+                          [(ngModel)]="model.summary"/>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group row">
+                      <label class="col-lg-2 col-form-label">Description</label>
+                      <div class="col-lg-10">
+                          <input
+                          type="text"
+                          class="form-control"
+                          name="description"
+                          [(ngModel)]="model.description"/>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group row">
+                      <label class="col-lg-2 col-form-label">Total Cost</label>
+                      <div class="col-lg-10">
+                        <input
+                          type="text"
+                          class="form-control"
+                          name="summary"
+                          [(ngModel)]="model.cost"/>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group row">
+                        <span class="upload" *ngIf="progress > 0">
+                            {{progress}}%
+                          </span>
+                          <span class="upload" *ngIf="message">
+                            {{message}}
+                          </span>
+                      <div class="col-lg-10">
+                          <input type="file" #file placeholder="Choose file" (change)="uploadFile(file.files)" style="display:none;">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group row text-center">
+                  <div class="col-lg-offset-2 col-lg-10">
+                      <button type="button" class="btn btn-success" (click)="file.click()">Upload File</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      <!-- End Submit Quotation -->
+
+      <!-- List Quotation -->
+
+      <div class="row" *appHasRole="['Approver', 'Authoriser']">
+        <div class="col-lg-12">
+          <div class="ibox ">
+            <div class="ibox-title">
+              <h5>Quotations</h5>
+            </div>
+            <div class="ibox-content">
+              <div class="table-responsive">
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th></th>
+                      <th>Summary</th>
+                      <th>Company</th>
+                      <th>Amount</th>
+                      <th>Status</th>
+                      <th>Submitted By</th>
+                      <th></th>
+
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let q of quotes">
+                      <td>
+                        <button class="btn btn-xs btn-outline-primary" type="button" (click)="downloadFile(q.filePath)">
+                          <i class="fa fa-download"></i>&nbsp;&nbsp;Download
+                        </button>
+                      </td>
+                      <td>{{ q.description }}</td>
+                      <td>{{ q.company }}</td>
+                      <td>{{ q.amount }}</td>
+                      <td>{{ q.status }}</td>
+                      <td>{{ q.submittedBy }}</td>
+                      <td>
+                        <button class="btn btn-xs btn-outline-primary" type="button" (click)="approveQuote(q.id, q.requisitionId)">
+                          <i class="fa fa-check"></i>&nbsp;&nbsp;Approve
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- End List Quotation-->
+
+    </div>
+  </div>

@@ -1,0 +1,55 @@
+
+<div class="row wrapper border-bottom white-bg page-heading">
+  <div class="col-lg-10">
+    <h2>Submit Quote</h2>
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a [routerLink]="['/home']">Home</a>
+      </li>
+      <li class="breadcrumb-item">
+        <a [routerLink]="['/admin']">Admin</a>
+      </li>
+      <li class="breadcrumb-item active">
+        <strong>Logs</strong>
+      </li>
+    </ol>
+  </div>
+  <div class="col-lg-2"></div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight">
+<div>
+
+<!-- List Quotation -->
+
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="ibox ">
+        <div class="ibox-title">
+          <h5>Logs</h5>
+        </div>
+        <div class="ibox-content">
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>User Name</th>
+                  <th>Action</th>
+                  <th>Time Stamp</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let l of logs">
+                  <td>{{ l.userName }}</td>
+                  <td>{{ l.action }}</td>
+                  <td>{{ l.timeStamp }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- End List Quotation-->
+</div>

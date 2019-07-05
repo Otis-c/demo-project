@@ -1,0 +1,32 @@
+<nav *ngIf="loggedIn()" class="navbar-default navbar-static-side" role="navigation">
+  <div class="sidebar-collapse">
+    <ul class="nav metismenu" id="side-menu">
+      <li class="nav-header">
+        <div class="dropdown profile-element">
+          <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+            <span class="block m-t-xs font-bold">{{ authSvc.decodedToken.unique_name | titlecase }} <b class="caret"></b> </span>
+          </a>
+          <ul class="dropdown-menu animated fadeInRight m-t-xs">
+            <li><a class="dropdown-item" href="login.html">Logout</a></li>
+          </ul>
+        </div>
+        <div class="logo-element">IN+</div>
+      </li>
+      <li class="active">
+        <a routerLink="/home"><i class="fa fa-home"></i><span class="nav-label"> Home</span></a>
+      </li>
+      <li *appHasRole="['Admin']">
+        <a routerLink="/admin"><i class="fa fa-drivers-license"></i><span class="nav-label"> Admin</span></a>
+      </li>
+      <li *appHasRole="['Admin']">
+        <a routerLink="/logs"><i class="fa fa-stack-exchange"></i><span class="nav-label"> Logs</span></a>
+      </li>
+      <li *appHasRole="['User', 'Vendor', 'Approver','Authoriser']">
+        <a routerLink="/requisitions"><i class="fa fa-inbox"></i><span class="nav-label"> Requisitions</span></a>
+      </li>
+      <li *appHasRole="['User']">
+        <a routerLink="/create-requisition"><i class="fa fa-plus-circle"></i><span class="nav-label"> Create Requisition</span></a>
+      </li>
+    </ul>
+  </div>
+</nav>
