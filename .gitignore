@@ -3,3 +3,6 @@
 ################################################################################
 
 /.vs/Procurement
+/Procurement.Api/bin/Debug/netcoreapp2.2
+/Procurement.Api/logs
+/Procurement.Api/obj
