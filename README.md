@@ -37,6 +37,13 @@ Follow these steps to get your development environment set up:
   5. Launch [http://localhost:4200/](http://localhost:4200/) in your browser to view the Web UI
   
   6. Launch [http://localhost:5000/swagger](http://localhost:5000/swagger) in your browser to view the API
+  
+## logins 
+* user: user@procurement.com password: Pass123$
+* user: admin@procurement.com password: Pass123$
+* user: vendor@procurement.com password: Pass123$
+* user: approver@procurement.com password: Pass123$
+* user: authoriser@procurement.com password: Pass123$
 
 ## Technologies
 
